@@ -1,5 +1,6 @@
 #!/bin/bash
-PI_ENV_FILE=${PI_ENV_FILE:-$HOME/pi-sandbox/.env}
+PROJECTS_DIR=${PROJECTS_DIR:-$HOME/projects}
+PI_ENV_FILE=${PI_ENV_FILE:-$PROJECTS_DIR/pi-sandbox/.env}
 PI_WORKSPACE=${PI_WORKSPACE:-$PWD}
 PI_CONFIG_DIR=${PI_CONFIG_DIR:-$HOME/.pi}
 
