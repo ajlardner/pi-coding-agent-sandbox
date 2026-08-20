@@ -6,4 +6,4 @@ PI_CONFIG_DIR=${PI_CONFIG_DIR:-$HOME/.pi}
 
 # TODO - dont let this be run in the same directory as the script
 
-podman run --rm -it --env-file "$PI_ENV_FILE" -v $PI_WORKSPACE:/workspace -v $PI_CONFIG_DIR:/root/.pi pi-coding-agent
+podman run --rm -it --network host --env-file "$PI_ENV_FILE" -v $PI_WORKSPACE:/workspace -v $PI_CONFIG_DIR:/root/.pi pi-coding-agent
