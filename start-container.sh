@@ -4,5 +4,9 @@ PI_WORKSPACE=${PI_WORKSPACE:-$PWD}
 PI_CONFIG_DIR=${PI_CONFIG_DIR:-$HOME/.pi}
 
 # TODO - dont let this be run in the same directory as the script
+# TODO - cd to a specific directory and get rid of old files for a clean slate
+# cd $HOME/agent-workspace
+# mkdir -p $HOME/.archive/agent-workspace/"$(today)"
 
-podman run --rm -it --network host --env-file "$PI_ENV_FILE" -v $PI_WORKSPACE:/workspace:ro -v $PI_CONFIG_DIR:/root/.pi pi-coding-agent
+
+podman run --rm -it --network host --env-file "$PI_ENV_FILE" -v $PI_WORKSPACE:/workspace -v $PI_CONFIG_DIR:/root/.pi pi-coding-agent
