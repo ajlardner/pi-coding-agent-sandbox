@@ -1,5 +1,5 @@
-# Pi Coding Agent Configuration
-Configuration, extensions / skills, and sandbox setup for Pi Coding Agent, run in rootless podman
+# Pi Coding Agent Sandbox
+Sandbox setup for Pi Coding Agent, run in rootless podman
 
 ## Dependencies
 - podman
@@ -13,7 +13,7 @@ podman build -f ContainerFile -t pi-coding-agent
 
 symlink `pi-coding-agent`, or whatever you want to call it, to your path: 
 
-i have ~/scripts on my path, if you dont, you can run `export PATH=~/scripts:$PATH`, or add to .bashrc - `echo 'export PATH=~/scripts:$PATH' >> .bashrc`
+I have ~/scripts on my path, if you dont, you can run `export PATH=~/scripts:$PATH`, or add to .bashrc - `echo 'export PATH=~/scripts:$PATH' >> .bashrc`
 or put it wherever you want and add that to your path or dont the world is your oyster
 ```bash
 ln -s ~/.pi/start-container.sh ~/scripts/pi-coding-agent.sh
@@ -21,10 +21,14 @@ pi-coding-agent
 ```
 or directly call the script:
 ```
-$PROJECTS_DIR/start-container.sh
+cd pi-sandbox
+./start-container.sh
 ```
+
+Use the `--update` flag to rebuild the container image with the latest version of Pi Coding Agent. With normal usage, the container will have whatever version of Pi npm gave it when it was last built. Even if you update Pi using `pi update`, if you stop the container and start it again it will use the version that was installed on the last build.
+
 ## `.env` file
-The startup script passes a `.env` file for any variables the agent should have access to but shouldn't be committed like API keys. The script will use the value of `$PI_ENV_FILE` or default to `$HOME/pi-sandbox/.env` - if you don't want anything in the env file, create an empty one at the default location or whatever you set `$PI_ENV_FILE` to, or remove the `--env-file` argument from the `start-container.sh` script
+The startup script passes a `.env` file for any variables the agent should have access to but shouldn't be committed, like API keys. The script will use the value of `$PI_ENV_FILE` or default to `$HOME/pi-sandbox/.env` - if you don't want anything in the env file, create an empty one at the default location or whatever you set `$PI_ENV_FILE` to, or remove the `--env-file` argument from the `start-container.sh` script
 
 ## ENV variables
 |variable|description|default value|

@@ -8,5 +8,10 @@ PI_CONFIG_DIR=${PI_CONFIG_DIR:-$HOME/.pi}
 # cd $HOME/agent-workspace
 # mkdir -p $HOME/.archive/agent-workspace/"$(today)"
 
+if [ "${1:-}" = "--update" ]; then
+  shift
+  script_dir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+  podman build --pull=always --no-cache -f "$script_dir/ContainerFile" -t pi-coding-agent "$script_dir"
+fi
 
 podman run --rm -it --network host --env-file "$PI_ENV_FILE" -v $PI_WORKSPACE:/workspace -v $PI_CONFIG_DIR:/root/.pi pi-coding-agent
